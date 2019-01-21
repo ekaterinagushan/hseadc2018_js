@@ -15,7 +15,8 @@
         margin: 0;
       }
 
-        /* position: absolute; */
+      div{
+        position: absolute;
       }
       </style>
 
@@ -32,9 +33,10 @@
             let b      = Math.floor(Math.random() * 225) + 1
 
             let color  = [r, g, b].join()
-            console.log(color)
 
           $(this).css({
+            "top": y + "px",
+            "left": x + "px",
             "width": width + "px",
             "height": height + "px",
             "background-color": "rgb(" + color + ")"
