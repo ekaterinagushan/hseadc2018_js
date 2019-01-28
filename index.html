@@ -27,86 +27,89 @@
 
       <script type="text/javascript">
 
-      function generateRectangles(quantity) {
-      console.log("<div></div>" * quantity)
+       function generateRectangles(quantity) {
+        console.log("<div></div>" * quantity)
 
-      const element = "<div></div>"
-      let elements = ""
+       const element = "<div></div>"
+       let elements = ""
 
-      let step
+       let step
 
-      for(step = 0; step < quantity; step++) {
-      elements += element
+       for(step = 0; step < quantity; step++) {
+       elements += element
 
-      }
+       }
 
-      $("body").append(elements)
-      }
+       $("body").append(elements)
+       }
 
-      function generatePercent(limit) {
-      let number = Math.round(Math.random() * limit)
-      let percent = "%"
-      return number
-      }
+       function generatePercent(limit) {
+        let number = Math.round(Math.random() * limit)
+        let percent = "%"
+        return number
+       }
 
-      function generateSize() {
-      return generatePercent(95)
+       function generateSize() {
+       return generatePercent(95)
 
-      }
+       }
 
-      function generateShift(size) {
-      let limit = 100 - size
-      return generatePercent(limit)
-      }
+       function generateShift(size) {
+       let limit = 100 - size
+       return generatePercent(limit)
+       }
 
-      function generateColorChannel() {
-      return Math.floor(Math.random() * 255)
-      }
+       function generateColorChannel() {
+       return Math.floor(Math.random() * 255)
+       }
 
-      function generateColor() {
-      let r = generateColorChannel()
-      let g = generateColorChannel()
-      let b = generateColorChannel()
+        function generateColor() {
+        let r = generateColorChannel()
+        let g = generateColorChannel()
+        let b = generateColorChannel()
 
-      let color = "rgb(" + [r, g, b].join() + ")"
+        let color = "rgb(" + [r, g, b].join() + ")"
 
-      return color
-      }
+        return color
+        }
 
-      function changeRectangleCSS(element) {
+        function changeRectangleCSS(element) {
 
-      const width = generateSize()
-      const height = generateSize()
-      const x = generateShift(width) + "%"
-      const y = generateShift(height) + "%"
-      const translate = [x,y].join()
+        const width = generateSize()
+        const height = generateSize()
+        const x = generateShift(width) + "%"
+        const y = generateShift(height) + "%"
+        const translate = [x,y].join()
 
-      element.css({
-      "transform": "translate(" + translate + ")translateZ(0)",
+        element.css({
+        "transform": "translate(" + translate + ")translateZ(0)",
 
-      // "top": generateShift(height) + "%",
-      // "left": generateShift(width) + "%",
-      "width": width + "%",
-      "height": height + "%",
-      "background-color": generateColor()
+        // "top": generateShift(height) + "%",
+        // "left": generateShift(width) + "%",
+        "width": width + "%",
+        "height": height + "%",
+        "background-color": generateColor()
+        })
+        }
+
+        function changeRectanglesCSS() {
+          $("div").each(function(index) {
+          const element = $(this)
+          changeRectangleCSS($(element))
+
+          // $(this).on("mouseenter", function(){
+          // changeRectangleCSS($(this))
+          // })
+          // setTimeout(function() {
+          // console.log($(element))
+          // changeRectangleCSS($(element))
+          // }, 1000)
       })
-      }
-
-      function changeRectanglesCSS() {
-        $("div").each(function(index) {
-        const element = $(this)
-        changeRectangleCSS($(element))
-
-        // $(this).on("mouseenter", function(){
-        // changeRectangleCSS($(this))
-        // })
-        // setTimeout(function() {
-        // console.log($(element))
-        // changeRectangleCSS($(element))
-        // }, 1000)
-      })
 
       }
+
+
+
 
       $(function() {
        generateRectangles(10)
